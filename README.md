@@ -7,6 +7,8 @@
 
 [![Travis build
 status](https://travis-ci.org/jelger12/eduperiod.svg?branch=master)](https://travis-ci.org/jelger12/eduperiod)
+[![Codecov test
+coverage](https://codecov.io/gh/jelger12/eduperiod/branch/master/graph/badge.svg)](https://codecov.io/gh/jelger12/eduperiod?branch=master)
 <!-- badges: end -->
 
 The goal of eduperiod is to …

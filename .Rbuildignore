@@ -4,3 +4,4 @@
 ^\.travis\.yml$
 ^LICENSE\.md$
 ^data_raw/.*
+^codecov\.yml$
