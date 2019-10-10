@@ -1,9 +1,6 @@
-#' Academische periode
+#' Educational period
 #'
-#' In deze functie wordt een datum vertaald naar het academisch jaar of periode
-#' waarin die datum valt. Hier wort uitgegaan van de periodes die in het bestand
-#' 2. Geprepareerde data/Dates.rds opgeslagen zijn. Deze informatie wordt handmatig
-#' bijgehouden op basis van de academische jaarkalender van de VU.
+#' This function translates the academic period to
 #'
 #' @param x Een datum, of vector met meerdere data. POSIXct wordt ook geaccepteerd.
 #' @param type Standaard: "period": De academische periode wordt geretourneerd.
