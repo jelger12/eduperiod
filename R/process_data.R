@@ -13,22 +13,17 @@ process_dates_csv <- function(file,
 
     ## process the data
     dates %>%
-        ## Voeg een extra kolom toe omdat we deze later nodig hebben
-        ## om Einddatum_prev en Peildatum_prev te berekenen
+        ## Add an extra column to be able to create end_date_prev
         dplyr::mutate(Extra_kolom = lubridate::dmy(NA_integer_)) %>%
-        ## Klap de tabel om van wide naar long format
+        ## reshape wide to long format
         tidyr::gather(key = period,
                       value = end_date,
                       -year) %>%
-        ## Pas variabelen aan
+        ## extract the numbers from the period
         dplyr::mutate(period = as.numeric(stringr::str_extract(period, "[0-9]"))) %>%
-        ## Zet de variabelen op volgorde van year en period
-        ## zodat we daarna een berekening kunnen maken obv de plek van de
-        ## variabele in de data
+        ## Arrange the periods
         dplyr::arrange(year, period) %>%
-        ## Bereken de Einddatum_prev en Peildatum_prev op basis van de
-        ## einddatum en peildatum van de voorgaande periode. Elke periode
-        ## heeft een begin en einddatum
+        ## create the end date of the previous row as an extra value
         dplyr::mutate(end_date_prev = lag(end_date)) %>%
         as.data.frame()
 }
@@ -37,7 +32,7 @@ process_dates_csv <- function(file,
 
 get_dates <- function() {
     if (is.null(getOption("eduperiod.table"))) {
-        warning("VU is being used as dates table")
+        warning("No dates table is set: 'VU' is set as default")
         register_dates(name = "VU")
         getOption("eduperiod.table")
 
@@ -48,11 +43,25 @@ get_dates <- function() {
 }
 
 
-register_dates <- function(name, dates) {
+register_dates <- function(name = NULL, dates = NULL) {
+    ## Test: only one parameter can be used, name or dates
+    if(!is.null(name) & !is.null(dates)) {
+        stop("use only one parameter: name or dates")
+    }
+    ## If name is used: assign the option
     if (!is.null(name)) {
-        options("eduperiod.table" = dates_list[[name]])
+        ## Check if name exists
+        if (name %in% names(dates_list)) {
+            options("eduperiod.table" = dates_list[[name]])
+        } else {
+            stop(paste(name, "not found"))
+        }
+
     } else if (!is.null(dates)) {
+        ## Assign the given dates file
         options("eduperiod.table" = dates)
+    } else {
+        stop("Please give a name or dates object")
     }
 
 
