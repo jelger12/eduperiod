@@ -1,6 +1,6 @@
 Package: eduperiod
 Type: Package
-Title: Functions to calculate the educational period
+Title: Calculate the educational period of a date
 Version: 0.1.0
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
@@ -11,3 +11,8 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/jelger12/eduperiod
 BugReports: https://github.com/jelger12/eduperiod/issues
+RoxygenNote: 6.1.1
+Imports: 
+    magrittr,
+    dplyr,
+    lubridate

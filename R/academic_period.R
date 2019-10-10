@@ -1,13 +1,8 @@
 #' Educational period
 #'
-#' This function translates the academic period to
-#'
-#' @param x Een datum, of vector met meerdere data. POSIXct wordt ook geaccepteerd.
-#' @param type Standaard: "period": De academische periode wordt geretourneerd.
-#' bij "year" wordt het academisch jaar teruggegeven.
-#' @return Het academisch jaar of periode waarin de opgegeven datum valt.
-#' @export
-edu_period_year <- function(x, type = "period"){
+#' This function translates the date vector to a vector of academic periods or
+#' years
+edu_period_year <- function(x, type, name){
 
     ## Converteer POSIXct en POSIXt naar de klasse datum
     if (any(class(x) %in% c("POSIXct", "POSIXt"))) {
@@ -19,7 +14,7 @@ edu_period_year <- function(x, type = "period"){
 
     ## Voeg de tijdelijke variabele TMP = T toe, zodat een cartetisch product
     ## gemaakt kan worden
-    dates_long <- dates_long %>%
+    dates_long <- get_dates() %>%
         dplyr::mutate(TMP = T)
 
     ## Maak vanwege de performance eerst een tibble van alle unieke datums in de vector
@@ -41,17 +36,42 @@ edu_period_year <- function(x, type = "period"){
 
     ## Retourneer de waarde, afhankelijk van de parameter type die is meegegeven
     if (type == "period") {
-        return(x_df$period)
+        return(as.integer(x_df$period))
     }
     if (type == "year") {
-        return(x_df$year)
+        return(as.integer(x_df$year))
     }
 }
 
+#' Educational period
+#'
+#' Translate date to educational period
+#'
+#' @param x Date or POSIXct vector or value
+#'
+#' @return the translated period as an integer vector or value
+#' @export
+#'
+#' @examples
+#'
 edu_period <- function(x) {
     edu_period_year(x, type = "period")
 }
 
+#' Educational year
+#'
+#' Translate date to educational year
+#'
+#' @param x Date or POSIXct vector or value
+#'
+#' @return the translated year as an integer vector or value
+#' @export
+#'
+#' @examples
+#'
 edu_year <- function(x) {
     edu_period_year(x, type = "year")
 }
+
+
+
