@@ -13,7 +13,7 @@ edu_period_year <- function(x, type, name, dates = NULL){
     stopifnot(class(x) == "Date")
 
     ## If no dates table is given, use the dates table from the options
-    if (is.null) {
+    if (is.null(dates)) {
         ## get the dates table
         dates <- get_dates()
     }

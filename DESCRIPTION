@@ -17,6 +17,7 @@ Imports:
     dplyr,
     lubridate,
     readr,
+    stringr,
     tidyr
 Suggests: 
-    testthat
+    testthat (>= 2.1.0)
