@@ -9,3 +9,9 @@
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+#' .data
+#' @name .data
+#' @importFrom rlang .data
+NULL
+

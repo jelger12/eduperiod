@@ -1,7 +1,3 @@
-#' Educational period
-#'
-#' This function translates the date vector to a vector of academic periods or
-#' years
 edu_period_year <- function(x, type, name, dates = NULL){
 
     ## Convert POSIXct and POSIXt to Dates class
@@ -22,9 +18,9 @@ edu_period_year <- function(x, type, name, dates = NULL){
     unique_df <- dplyr::tibble(x = unique(x)) %>%
         tidyr::crossing(dates) %>%
         ## filter the rows that are within the range
-        dplyr::filter(x >= end_date_prev,
-                      x <  end_date) %>%
-        dplyr::select(x, year, period)
+        dplyr::filter(x >= .data$end_date_prev,
+                      x <  .data$end_date) %>%
+        dplyr::select(x, .data$year, .data$period)
 
     ## Join the caculated period and year to a tibble with the x vector
     x_df <- dplyr::tibble(x = x) %>%
@@ -48,9 +44,6 @@ edu_period_year <- function(x, type, name, dates = NULL){
 #'
 #' @return the translated period as an integer vector or value
 #' @export
-#'
-#' @examples
-#'
 edu_period <- function(x, dates = NULL) {
     edu_period_year(x, type = "period", dates = dates)
 }
@@ -64,9 +57,6 @@ edu_period <- function(x, dates = NULL) {
 #'
 #' @return the translated year as an integer vector or value
 #' @export
-#'
-#' @examples
-#'
 edu_year <- function(x, dates = NULL) {
     edu_period_year(x, type = "year", dates = dates)
 }

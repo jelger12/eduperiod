@@ -2,22 +2,26 @@ Package: eduperiod
 Type: Package
 Title: Calculate the educational period of a date
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+    person(given = "Jelger",
+           family = "van Zaane",
+           role = c("aut", "cre"),
+           email = "j.d.van.zaane@vu.nl")
+Description: The functions in this package can transform a date vector to a vector with the educational periods or years.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/jelger12/eduperiod
 BugReports: https://github.com/jelger12/eduperiod/issues
 RoxygenNote: 6.1.1
+Depends: R (>= 3.1.0)
 Imports: 
     magrittr,
     dplyr,
     lubridate,
     readr,
     stringr,
-    tidyr
+    tidyr,
+    rlang
 Suggests: 
     testthat (>= 2.1.0)

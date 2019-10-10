@@ -17,6 +17,3 @@ the translated period as an integer vector or value
 \description{
 Translate date to educational period
 }
-\examples{
-
-}

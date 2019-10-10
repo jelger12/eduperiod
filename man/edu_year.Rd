@@ -17,6 +17,3 @@ the translated year as an integer vector or value
 \description{
 Translate date to educational year
 }
-\examples{
-
-}

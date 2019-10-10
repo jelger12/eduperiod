@@ -3,4 +3,7 @@
 export("%>%")
 export(edu_period)
 export(edu_year)
+export(process_dates_csv)
+export(register_dates)
 importFrom(magrittr,"%>%")
+importFrom(rlang,.data)
