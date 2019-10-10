@@ -20,11 +20,11 @@ process_dates_csv <- function(file,
                       value = end_date,
                       -year) %>%
         ## extract the numbers from the period
-        dplyr::mutate(period = as.numeric(stringr::str_extract(period, "[0-9]"))) %>%
+        dplyr::mutate(period = as.integer(stringr::str_extract(period, "[0-9]"))) %>%
         ## Arrange the periods
         dplyr::arrange(year, period) %>%
         ## create the end date of the previous row as an extra value
-        dplyr::mutate(end_date_prev = lag(end_date)) %>%
+        dplyr::mutate(end_date_prev = dplyr::lag(end_date)) %>%
         as.data.frame()
 }
 

@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/jelger12/eduperiod.svg?branch=master)](https://travis-ci.org/jelger12/eduperiod)
 <!-- badges: end -->
 
 The goal of eduperiod is to …
