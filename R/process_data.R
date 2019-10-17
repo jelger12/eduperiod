@@ -23,19 +23,19 @@ process_dates_csv <- function(file, delim = ",", format = "%d-%m-%Y", register =
         ## Add an extra column to be able to create end_date_prev
         dplyr::mutate(Extra_kolom = lubridate::dmy(NA_integer_)) %>%
         ## reshape wide to long format
-        tidyr::gather(key = .data$period,
-                      value = .data$end_date,
-                      -.data$year) %>%
+        tidyr::gather(period,
+                      end_date,
+                      -year) %>%
         ## extract the numbers from the period
-        dplyr::mutate(period = as.integer(stringr::str_extract(.data$period, "[0-9]"))) %>%
+        dplyr::mutate(period = as.integer(stringr::str_extract(period, "[0-9]"))) %>%
         ## Arrange the periods
-        dplyr::arrange(.data$year, .data$period) %>%
+        dplyr::arrange(year, period) %>%
         ## create the end date of the previous row as an extra value
-        dplyr::mutate(end_date_prev = dplyr::lag(.data$end_date)) %>%
+        dplyr::mutate(end_date_prev = dplyr::lag(end_date)) %>%
         as.data.frame()
 
     if (register) {
-        register_dates(dates)
+        register_dates(dates = dates)
     }
     dates
 }
